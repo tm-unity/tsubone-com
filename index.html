@@ -1,45 +1,135 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Unity.tsubone.com</title>
+  <meta charset="utf-8">
+  <title>Welcome | tsubone.com</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Unity — 軽やかにつながり、しゃんと育つ。">
   <style>
-    body {
-      font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.8;
-      margin: 40px;
-      background: #fdfdfd;
-      color: #333;
+    :root{
+      --bg:#0b0f14;            /* 暗めの藍 */
+      --card:#0f141b;          /* さらに深い藍 */
+      --ink:#e9eef5;           /* ほぼ白 */
+      --muted:#a9b6c6;
+      --accent:#43b4a8;        /* 青緑（穏やかな差し色） */
+      --accent2:#8ecae6;       /* 水色（ホバーなど） */
     }
-    h1 {
-      font-size: 1.8em;
-      color: #004080;
-      margin-bottom: 0.5em;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",Arial,sans-serif;
+      line-height:1.6; letter-spacing:.01em;
+      display:grid; place-items:center;
     }
-    p {
-      margin-bottom: 1.2em;
+    /* 水紋背景（SVG） */
+    .bg{
+      position:fixed; inset:0; z-index:-1; opacity:.22; pointer-events:none;
+      background:
+        radial-gradient(60rem 60rem at 20% 10%, #1a2430 0%, transparent 60%),
+        radial-gradient(80rem 80rem at 80% 120%, #13202a 0%, transparent 60%),
+        #0b0f14;
     }
-    footer {
-      margin-top: 3em;
-      font-size: 0.85em;
-      color: #888;
+    .bg::after{
+      content:"";
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,.05) 0 1px, transparent 2px);
+      background-size: 160px 160px, 220px 220px; /* 微細な水紋感 */
+      mix-blend-mode:screen;
+      opacity:.35;
+    }
+
+    .wrap{
+      width:min(100%,980px); padding:32px;
+    }
+    .hero{
+      border-radius:20px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      padding: clamp(28px, 5vw, 56px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:16px; margin-bottom:14px;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:12px;
+      background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent));
+      box-shadow: 0 6px 18px rgba(67,180,168,.35);
+    }
+    h1{
+      margin:0; font-weight:700; letter-spacing:.02em;
+      font-size:clamp(26px, 5vw, 40px);
+    }
+    .tagline{
+      margin:.4rem 0 1.2rem; color:var(--muted);
+      font-size:clamp(14px, 2.4vw, 17px);
+    }
+
+    .cta{
+      display:flex; gap:14px; flex-wrap:wrap; margin:22px 0 4px;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:14px 22px; border-radius:14px; font-weight:600; letter-spacing:.02em;
+      color:#0b0f14; background:var(--accent);
+      box-shadow: 0 10px 24px rgba(67,180,168,.35), inset 0 1px 0 rgba(255,255,255,.25);
+      transition: transform .08s ease, background .2s ease, box-shadow .2s ease;
+      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn:hover{ transform: translateY(-1px); background:#3aaea1; }
+    .btn:active{ transform: translateY(0); box-shadow: 0 6px 16px rgba(67,180,168,.28); }
+
+    .btn.secondary{
+      background:#222a33; color:var(--ink);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .btn.secondary:hover{ background:#283241; }
+
+    .links{
+      margin-top:12px; color:var(--muted); font-size:14px;
+    }
+    .links a{ color:var(--accent2); text-decoration:none; }
+    .links a:hover{ text-decoration:underline; }
+
+    footer{
+      margin-top:18px; color:#7f8a99; font-size:12px;
+    }
+
+    /* レスポンシブ微調整 */
+    @media (max-width:520px){
+      .cta{ gap:10px }
+      .btn{ width:100%; justify-content:center; }
     }
   </style>
 </head>
 <body>
-  <h1>About This Community</h1>
-  <p>
-    このサイトは、非公式同窓会の場として構築されています。<br>
-    理念は「公式を超える使いやすさ・運営コストの軽さ・直近性のあるデータ更新」。<br>
-    個人情報の収集は最小限とし、入学年度や学科などのタグをもとに、緩やかにネットワークを形成します。
-  </p>
-  <p>
-    招待制と段階的な信用レベルにより、参加者は安心して交流できます。<br>
-    また、ポイントやラベルによる遊び心を取り入れ、静的でありながらも動的なコミュニティ運営を目指しています。
-  </p>
-  <footer>
-    &copy; 2025 Unity.tsubone.com
-  </footer>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Welcome to <span style="color:var(--accent)">Unity</span></h1>
+          <div class="tagline">軽やかにつながり、しゃんと育つ。</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="https://entry.tsubone.com" rel="noopener">Entry — 参加窓口</a>
+        <a class="btn secondary" href="https://unity.tsubone.com" rel="noopener">Unity — 活動スペース</a>
+      </div>
+
+      <div class="links">
+        <span>QR先：<strong>tsubone.com</strong></span> ／
+        <a href="mailto:contact@tsubone.com">お問い合わせ</a>
+      </div>
+
+      <footer>© 2025 tsubone.com</footer>
+    </section>
+  </main>
 </body>
 </html>
