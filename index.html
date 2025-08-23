@@ -6,153 +6,79 @@
   <title>Portal | TSUBONE Com Unity</title>
   <meta name="description" content="TSUBONE Com Unity — 緩やかにつながって、友情を醸しましょう。" />
   <meta name="color-scheme" content="dark" />
-  <style>
-    :root {
-      --emerald: #56d364; /* 淡いエメラルド */
-      --bg: #0d1117;
-      --panel: #161b22;
-      --muted: #8b949e;
-      --text: #e6edf3;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.8;
-    }
-
-    .wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 48px 16px;
-    }
-
-    .hero {
-      background: var(--panel);
-      padding: 32px;
-      border-radius: 12px;
-      max-width: 720px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 0.5em;
-    }
-
-    .com-unity-underline {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-      color: var(--emerald);
-    }
-
-    .tagline-ja {
-      font-size: 1.1em;
-      margin-bottom: 0.3em;
-    }
-    .tagline-en {
-      font-size: 0.95em;
-      color: var(--muted);
-    }
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 1.5em;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.6em 1.2em;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #30363d;
-      background: #21262d;
-      color: var(--emerald);
-      transition: background 0.25s;
-    }
-    .btn:hover {
-      background: #30363d;
-    }
-    .btn.disabled {
-      color: var(--muted);
-      pointer-events: none;
-      border-color: #21262d;
-    }
-
-    .net-canvas {
-      display: block;
-      margin: 20px auto;
-      border-radius: 12px;
-      background: var(--panel);
-    }
-
-    .foot {
-      font-size: 0.85em;
-      margin-top: 8px;
-      color: var(--muted);
-    }
-  </style>
+  <link rel="stylesheet" href="/style.css?v=2025-08-24b" />
 </head>
-<body class="welcome">
-  <main class="wrap">
+<body>
+  <div class="container">
+
+    <!-- HERO -->
     <section class="hero" role="region" aria-labelledby="portal-title">
-      <h1 id="portal-title">Welcome to TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span>!</h1>
-      <p class="tagline-ja">緩やかにつながって、友情を醸しましょう。</p>
-      <p class="tagline-en">Let us connect gently and foster friendship.</p>
-
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/apply/" class="btn">← Apply</a>
-        <a href="/" class="btn disabled">↑ Portal</a>
-        <a href="/unity/" class="btn">Unity →</a>
-      </nav>
-    </section>
-
-    <!-- 動的ネットワーク・アート -->
-    <canvas id="net" class="net-canvas" aria-hidden="true"></canvas>
-
-    <section class="hero" role="region" aria-label="Contact & Credit" style="padding:16px 24px">
-      <div style="color:var(--muted)">QR先：<strong>tsubone.com</strong> ／
-        <a href="mailto:contact@tsubone.com" style="color:var(--emerald); text-decoration:none">お問い合わせ</a>
+      <div class="title-row">
+        <span class="kicker" aria-hidden="true"></span>
+        <h1 id="portal-title">
+          Welcome to TSUBONE
+          <span class="brand-emerald">Com&nbsp;Unity</span>!
+        </h1>
       </div>
-      <div class="foot">© 2025 TSUBONE Com Unity</div>
-    </section>
-  </main>
 
-  <!-- ネットワーク描画 -->
+      <p class="lead">緩やかにつながって、友情を醸しましょう。</p>
+      <p class="sub">Let us connect gently and foster friendship.</p>
+
+      <nav class="nav-row" aria-label="Primary navigation">
+        <!-- ← Apply -->
+        <a class="btn btn--primary" href="/apply/" data-dir="left">Apply</a>
+
+        <!-- ↑ Portal（現ページは非活性） -->
+        <a class="btn" href="#" aria-current="page" data-dir="up">Portal</a>
+
+        <!-- Unity → -->
+        <a class="btn" href="/unity/" data-dir="right">Unity</a>
+      </nav>
+
+      <div class="hr" aria-hidden="true"></div>
+    </section>
+
+    <!-- ネットワーク・アート：タイル幅と統一 -->
+    <section class="section canvas-wrap" role="region" aria-label="Network art">
+      <canvas id="net" aria-hidden="true"></canvas>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer" role="contentinfo">
+      <div>QR先：<strong>tsubone.com</strong> ／
+        <a href="mailto:contact@tsubone.com">お問い合わせ</a>
+      </div>
+      <div class="mt-2">© 2025 TSUBONE Com Unity</div>
+    </footer>
+
+  </div>
+
+  <!-- 依存なしのネットワーク描画 -->
   <script>
   (() => {
-    const cvs = document.getElementById('net');
-    const ctx = cvs.getContext('2d');
+    const wrap = document.querySelector('.canvas-wrap');
+    const cvs  = document.getElementById('net');
+    const ctx  = cvs.getContext('2d');
+
     let dpi = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    let w = 0, h = 0;
+    let w = 0, h = 0, req;
 
-    const N = 60;
-    const MAX_R = 2.2;
-    const LINK = 110;
+    const N = 60;           // ノード数
+    const MAX_R = 2.2;      // 点の最大半径
+    const LINK = 110;       // 接続しきい距離
     const nodes = [];
-    const emerald = getComputedStyle(document.documentElement).getPropertyValue('--emerald').trim();
-    const lineBase = 'rgba(86,211,100,'; // #56d364 を RGBA にした値
 
-    const mouse = {x: -9999, y: -9999, active: false};
+    const emerald = getComputedStyle(document.documentElement)
+                     .getPropertyValue('--emerald').trim() || '#3fb950';
+    const lineBase = 'rgba(63,185,80,'; // emerald相当のライン色
 
     function resize() {
-      const base = document.querySelector('.wrap') || document.body;
-      const rect = base.getBoundingClientRect();
-      w = Math.floor(rect.width);
-      h = Math.floor(Math.max(300, Math.min(420, window.innerHeight * 0.42)));
-      cvs.style.width = w + 'px';
+      const rect = wrap.getBoundingClientRect();
+      w = Math.max(280, Math.floor(rect.width));
+      h = Math.floor(rect.height);
+      cvs.style.width  = w + 'px';
       cvs.style.height = h + 'px';
-      cvs.width = Math.floor(w * dpi);
+      cvs.width  = Math.floor(w * dpi);
       cvs.height = Math.floor(h * dpi);
       ctx.setTransform(dpi, 0, 0, dpi, 0, 0);
     }
@@ -170,10 +96,12 @@
       }
     }
 
-    let req;
+    const mouse = { x: -9999, y: -9999, active: false };
+
     function step() {
       ctx.clearRect(0, 0, w, h);
 
+      // edges
       for (let i = 0; i < N; i++) {
         for (let j = i + 1; j < N; j++) {
           const a = nodes[i], b = nodes[j];
@@ -191,13 +119,16 @@
         }
       }
 
+      // nodes
       for (let i = 0; i < N; i++) {
         const n = nodes[i];
         n.x += n.vx; n.y += n.vy;
 
+        // 端で反転
         if (n.x < -20 || n.x > w + 20) n.vx *= -1;
         if (n.y < -20 || n.y > h + 20) n.vy *= -1;
 
+        // マウスにほんのり引き寄せ
         if (mouse.active) {
           const dx = mouse.x - n.x, dy = mouse.y - n.y;
           const d = Math.hypot(dx, dy) || 1;
@@ -213,36 +144,30 @@
         ctx.fill();
       }
 
-      req = window.requestAnimationFrame(step);
+      req = requestAnimationFrame(step);
     }
 
     cvs.addEventListener('mousemove', (e) => {
-      const rect = cvs.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      const r = cvs.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
       mouse.active = true;
     });
     cvs.addEventListener('mouseleave', () => { mouse.active = false; });
 
-    const boot = () => { resize(); init(); cancelAnimationFrame(req); step(); };
-
-    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function handleReduce() {
-      if (prefersReduce.matches) {
-        cancelAnimationFrame(req);
-        ctx.clearRect(0, 0, w, h);
-      } else {
-        boot();
-      }
+    const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)');
+    function boot() { resize(); init(); cancelAnimationFrame(req); step(); }
+    function onReduce() {
+      if (prefersReduce.matches) { cancelAnimationFrame(req); ctx.clearRect(0,0,w,h); }
+      else { boot(); }
     }
-    prefersReduce.addEventListener?.('change', handleReduce);
+    prefersReduce.addEventListener?.('change', onReduce);
 
     window.addEventListener('resize', () => {
-      clearTimeout(window.__rt);
-      window.__rt = setTimeout(boot, 150);
+      clearTimeout(window.__rt); window.__rt = setTimeout(boot, 150);
     });
 
-    handleReduce();
+    onReduce();
   })();
   </script>
 </body>
