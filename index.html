@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome | TSUBONE Com Unity</title>
+  <title>Portal | TSUBONE Com Unity</title>
   <style>
     body {
       font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
@@ -12,74 +12,56 @@
       margin: 0;
       padding: 40px;
       text-align: center;
-      line-height: 1.8;
     }
     h1 {
-      color: #3fb950;
-      font-size: 2rem;
-      margin-bottom: 0.3em;
+      font-size: 2.2rem;
+      margin-bottom: 0.5em;
     }
-    h1 .underline {
-      border-bottom: 2px solid #3fb950;
-      padding-bottom: 3px;
+    h1 span.underline {
+      text-decoration: underline;
     }
-    p.subtitle {
-      font-style: italic;
+    p.tagline {
+      font-size: 1.1rem;
+      margin-bottom: 2em;
       color: #8b949e;
-      margin-bottom: 2.5em;
     }
-    .button-group {
+    /* ボタン共通 */
+    .nav-buttons {
       display: flex;
       justify-content: center;
-      gap: 1.2em;
+      gap: 1rem;
+      margin-top: 2em;
       flex-wrap: wrap;
     }
     a.btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0.7em 1.4em;
+      display: inline-block;
+      padding: 0.6em 1.2em;
       border-radius: 8px;
       background: #21262d;
       color: #3fb950;
       text-decoration: none;
       border: 1px solid #30363d;
-      font-weight: bold;
       font-size: 1rem;
-      transition: background 0.2s ease;
+      transition: background 0.2s;
     }
     a.btn:hover {
       background: #30363d;
     }
-    .arrow-left::before {
-      content: "←";
-    }
-    .arrow-right::after {
-      content: "→";
-    }
-    .arrow-up::before {
-      content: "↑";
-    }
-    footer {
-      margin-top: 3em;
-      font-size: 0.85rem;
-      color: #8b949e;
-    }
+    /* 矢印 */
+    .btn-apply::before { content: "← "; }
+    .btn-unity::after { content: " →"; }
+    .btn-portal::before { content: "↑ "; }
   </style>
 </head>
 <body>
-  <h1>Welcome to TSUBONE <span class="underline">Com Unity</span>！</h1>
-  <p class="subtitle">緩やかにつながって、信頼を醸しましょう。<br>
-  Gently connect, and let trust be nurtured.</p>
+  <h1>Welcome to TSUBONE Com <span class="underline">Unity</span>!</h1>
+  <p class="tagline">緩やかにつながって、信頼を醸しましょう。<br>
+  Connect gently, cultivate trust.</p>
 
-  <div class="button-group">
-    <a href="/portal" class="btn arrow-up" accesskey="p" title="Alt+P">Portal</a>
-    <a href="/apply" class="btn arrow-left" accesskey="a" title="Alt+A">Apply</a>
-    <a href="/unity" class="btn arrow-right" accesskey="u" title="Alt+U">Unity</a>
+  <div class="nav-buttons">
+    <a href="/apply/" class="btn btn-apply">Apply</a>
+    <a href="/unity/" class="btn btn-unity">Unity</a>
+    <a href="/" class="btn btn-portal">Portal</a>
   </div>
-
-  <footer>
-    <p>© 2025 TSUBONE Com Unity</p>
-  </footer>
 </body>
 </html>
