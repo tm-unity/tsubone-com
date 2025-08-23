@@ -4,109 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Apply — TSUBONE Com Unity</title>
-  <meta name="color-scheme" content="dark">
-  <style>
-    :root{
-      --bg:#0d1117;
-      --panel:#0f1720;          /* 背景(やや明るめ) */
-      --panel-2:#0b1220;        /* 下段パネル */
-      --border:#1f2a35;
-      --text:#e6edf3;
-      --muted:#9fb0c0;
-      --emerald:#34d399;        /* エメラルド（統一） */
-      --emerald-ink:#0b3b2f;
-      --chip:#1e2937;
-      --shadow: 0 8px 28px rgba(0,0,0,.35);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #0f1a26 0%, var(--bg) 50%);
-      font:16px/1.7 system-ui, -apple-system, "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
-      letter-spacing:.02em;
-    }
-    .wrap{max-width:980px; margin:48px auto; padding:0 20px}
-    .hero{
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,0)) , var(--panel);
-      border:1px solid var(--border); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:36px 28px;
-    }
-    .title{display:flex; gap:16px; align-items:center; margin:0 0 8px}
-    .glyph{
-      width:40px; height:40px; border-radius:12px;
-      background: radial-gradient(circle at 30% 30%, #53f1be 0%, var(--emerald) 55%, #1f8c6f 100%);
-      box-shadow: 0 0 0 6px rgba(52,211,153,.08), inset 0 8px 20px rgba(0,0,0,.25);
-    }
-    h1{font-size:28px; line-height:1.25; margin:0; font-weight:800; color:var(--emerald)}
-    .sub{color:var(--muted); margin:4px 0 0; font-size:14px}
-    .note{margin:18px 0 8px}
-    .btns{display:flex; gap:12px; margin-top:16px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; gap:.5em;
-      padding:.7em 1.05em; border-radius:12px; text-decoration:none; font-weight:700;
-      border:1px solid var(--border); background:#16212c; color:var(--emerald);
-      box-shadow: 0 4px 18px rgba(0,0,0,.25);
-      transition:transform .08s ease, background .2s ease, box-shadow .2s ease;
-    }
-    .btn.primary{ background:linear-gradient(180deg, rgba(52,211,153,.25), rgba(52,211,153,.1)); color:#0a1814; border-color:#1f4f43}
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0,0,0,.35)}
-    .btn .ic{font-weight:900}
-    .divider{height:1px; background:linear-gradient(90deg, transparent, #223244, transparent); margin:24px 0}
-
-    .grid{
-      background: var(--panel-2);
-      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:22px; display:grid; gap:16px;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-    @media (max-width:720px){ .grid{grid-template-columns:1fr} }
-
-    .card{
-      border:1px solid var(--border); border-radius:14px; padding:18px;
-      background: #0e1722;
-      position:relative;
-      min-height:92px;
-    }
-    .card h3{margin:0 0 6px; font-size:16px}
-    .card p{margin:0; color:var(--muted); font-size:14px}
-    /* 準備中（無効） */
-    .card.disabled{
-      opacity:.55; filter:saturate(.6);
-    }
-    .badge{
-      position:absolute; top:10px; right:12px;
-      font-size:12px; color:#6990a6; background:#13202c; padding:.25em .6em; border-radius:999px;
-      border:1px solid #1e2f3e;
-    }
-
-    footer{color:#7f93a6; margin:18px 0 0; font-size:12px}
-  </style>
+  <meta name="color-scheme" content="dark" />
+  <link rel="stylesheet" href="/assets/app.css?v=2025-08-24a" />
 </head>
-<body>
+<body class="apply">
+  <div class="bg" aria-hidden="true"></div>
+
   <main class="wrap">
     <section class="hero">
-      <div class="title">
-        <div class="glyph" aria-hidden="true"></div>
-        <div>
-          <h1>Apply — TSUBONE Com Unity</h1>
-          <p class="sub">Join the Network (Under Construction)</p>
-        </div>
-      </div>
+      <h1>Apply — TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span></h1>
+      <p class="tagline-en">Join the Network (Under Construction)</p>
 
-      <p class="note">
-        参加申請ページは現在 <strong style="color:var(--emerald)">準備中</strong> です。<br>
+      <p style="margin-top:10px">
+        参加申請ページは現在 <span style="color:var(--emerald)">準備中</span> です。<br>
         方針は「招待＋推薦」「ポイント制」「鉱物ランク（Graphite → Diamond）」で運用します。
       </p>
 
-      <div class="btns">
-        <a class="btn" href="/"><span class="ic">↑</span> Portal</a>
-        <a class="btn primary" href="/unity/"><span class="ic">→</span> Unity</a>
-      </div>
+      <nav class="nav">
+        <a class="btn btn-portal" href="/" accesskey="p" title="Alt+P">Portal</a>
+        <a class="btn btn-unity" href="/unity/" accesskey="u" title="Alt+U">Unity</a>
+      </nav>
+    </section>
 
-      <div class="divider"></div>
-
-      <!-- Unity と同じカード構成。ここではすべて準備中でグレーアウト -->
+    <section class="hero" aria-label="Planned Modules (Apply)">
       <div class="grid">
         <article class="card disabled">
           <span class="badge">準備中</span>
@@ -129,8 +49,7 @@
           <p>推薦・承認キューの管理。</p>
         </article>
       </div>
-
-      <footer>© 2025 TSUBONE Com Unity</footer>
+      <div class="foot">© 2025 TSUBONE Com Unity</div>
     </section>
   </main>
 </body>
