@@ -1,68 +1,227 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portal | TSUBONE Com Unity</title>
+  <meta name="description" content="TSUBONE Com Unity — 緩やかにつながって、信頼を醸しましょう。" />
+
+  <!-- スタイル（黒 × エメラルド／矢印ボタン／水紋背景／ネットワーク枠） -->
   <style>
-    body {
-      font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
-      background: #0d1117; /* 黒背景 */
-      color: #e6edf3;
-      margin: 0;
-      padding: 40px;
-      text-align: center;
+    :root{
+      --bg:#0d1117; --ink:#e6edf3; --muted:#8b949e;
+      --emerald:#3fb950; --emerald-d:#2e8b57;
+      --panel:#161b22; --border:#30363d;
     }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5em;
-      color: #3fb950; /* エメラルド */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",Arial,sans-serif;
+      line-height:1.75; letter-spacing:.01em;
+      display:grid; place-items:center; text-align:center; padding:24px;
     }
-    h1 span.underline {
-      text-decoration: underline;
+
+    /* 背景：うっすら水紋 */
+    .bg{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+      background:
+        radial-gradient(60rem 60rem at 20% 10%, #16202a 0%, transparent 60%),
+        radial-gradient(80rem 80rem at 80% 120%, #121a22 0%, transparent 60%), var(--bg);}
+    .bg::after{content:""; position:absolute; inset:0; opacity:.35; mix-blend-mode:screen;
+      background-image:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,.05) 0 1px, transparent 2px);
+      background-size:160px 160px, 220px 220px;}
+
+    .wrap{width:min(100%,980px)}
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+      padding:clamp(28px,5vw,56px); margin-bottom:14px;
     }
-    p.tagline {
-      font-size: 1.1rem;
-      margin-bottom: 2em;
-      color: #8b949e;
+    h1{margin:0 0 .6rem; font-size:clamp(26px,5vw,40px); color:var(--emerald); font-weight:800; letter-spacing:.02em}
+    .com-unity-underline{
+      text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .18em;
     }
-    /* ボタン共通 */
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2em;
-      flex-wrap: wrap;
+    .tagline-ja{margin:.2rem 0 0; font-size:clamp(15px,2.4vw,17px)}
+    .tagline-en{margin:.2rem 0 0; color:var(--muted); font-size:clamp(13px,2.2vw,16px)}
+
+    /* 矢印ボタン */
+    .nav{display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.7rem 1.2rem; border-radius:12px; text-decoration:none;
+      background:#21262d; color:var(--emerald); border:1px solid var(--border);
+      font-weight:700; transition:background .2s ease, transform .08s ease;
     }
-    a.btn {
-      display: inline-block;
-      padding: 0.6em 1.4em;
-      border-radius: 8px;
-      background: #21262d;
-      color: #3fb950;
-      text-decoration: none;
-      border: 1px solid #30363d;
-      font-size: 1rem;
-      transition: background 0.2s;
+    .btn:hover{background:#2a3139; transform:translateY(-1px)}
+    .btn-apply::before{content:"←";}
+    .btn-unity::after{content:"→";}
+    .btn-portal::before{content:"↑";}
+
+    /* ネットワーク・アートの枠（キャンバス自体はJSで描画） */
+    .net-canvas{
+      display:block; width:100%; height:auto;
+      margin:12px auto 6px; border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.10); box-shadow:0 14px 40px rgba(0,0,0,.35);
     }
-    a.btn:hover {
-      background: #30363d;
-    }
-    /* 矢印 */
-    .btn-apply::before { content: "← "; }
-    .btn-unity::after { content: " →"; }
-    .btn-portal::before { content: "↑ "; }
+
+    .foot{margin-top:10px; font-size:12px; color:#9aa3ad}
   </style>
 </head>
 <body>
-  <h1>Welcome to TSUBONE Com <span class="underline">Unity</span>!</h1>
-  <p class="tagline">緩やかにつながって、信頼を醸しましょう。<br>
-  Connect gently, cultivate trust.</p>
+  <div class="bg" aria-hidden="true"></div>
 
-  <div class="nav-buttons">
-    <a href="/apply/" class="btn btn-apply">Apply</a>
-    <a href="/unity/" class="btn btn-unity">Unity</a>
-    <a href="/" class="btn btn-portal">Portal</a>
-  </div>
+  <main class="wrap">
+    <section class="hero" role="region" aria-labelledby="portal-title">
+      <h1 id="portal-title">Welcome to TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span>!</h1>
+      <p class="tagline-ja">緩やかにつながって、信頼を醸しましょう。</p>
+      <p class="tagline-en">Let us connect gently and foster trust.</p>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/apply/" class="btn btn-apply" accesskey="a" title="Alt+A">Apply</a>
+        <a href="/unity/" class="btn btn-unity" accesskey="u" title="Alt+U">Unity</a>
+        <a href="/" class="btn btn-portal" accesskey="p" title="Alt+P">Portal</a>
+      </nav>
+    </section>
+
+    <!-- 動的ネットワーク・アート（軽量Canvas版） -->
+    <canvas id="net" class="net-canvas" aria-hidden="true"></canvas>
+
+    <section class="hero" role="region" aria-label="Contact & Credit" style="padding:16px 24px">
+      <div style="color:var(--muted)">QR先：<strong>tsubone.com</strong> ／
+        <a href="mailto:contact@tsubone.com" style="color:#8ecae6; text-decoration:none">お問い合わせ</a>
+      </div>
+      <div class="foot">© 2025 TSUBONE Com Unity</div>
+    </section>
+  </main>
+
+  <!-- ネットワーク描画スクリプト（依存なし・高DPI対応） -->
+  <script>
+  (() => {
+    const cvs = document.getElementById('net');
+    const ctx = cvs.getContext('2d');
+    let dpi = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    let w = 0, h = 0;
+
+    const N = 60;           // ノード数
+    const MAX_R = 2.2;      // ノード半径
+    const LINK = 110;       // 接続しきい距離
+    const nodes = [];
+    const emerald = '#3fb950';
+    const lineBase = 'rgba(63,185,80,'; // 線色（エメラルド系、alpha付与）
+
+    const mouse = {x: -9999, y: -9999, active: false};
+
+    function resize() {
+      const base = document.querySelector('.wrap') || document.body;
+      const rect = base.getBoundingClientRect();
+      w = Math.floor(rect.width);
+      h = Math.floor(Math.max(300, Math.min(420, window.innerHeight * 0.42)));
+      cvs.style.width = w + 'px';
+      cvs.style.height = h + 'px';
+      cvs.width = Math.floor(w * dpi);
+      cvs.height = Math.floor(h * dpi);
+      ctx.setTransform(dpi, 0, 0, dpi, 0, 0);
+    }
+
+    function init() {
+      nodes.length = 0;
+      for (let i = 0; i < N; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - .5) * .35,
+          vy: (Math.random() - .5) * .35,
+          r: Math.random() * (MAX_R - 1) + 1
+        });
+      }
+    }
+
+    let req;
+    function step() {
+      ctx.clearRect(0, 0, w, h);
+
+      // 線（距離でフェード）
+      for (let i = 0; i < N; i++) {
+        for (let j = i + 1; j < N; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const d = Math.hypot(dx, dy);
+          if (d < LINK) {
+            const alpha = 0.18 * (1 - d / LINK);
+            ctx.strokeStyle = lineBase + alpha + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // ノード（漂い＋弱いマウス重力）
+      for (let i = 0; i < N; i++) {
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+
+        // やわらかいバウンス
+        if (n.x < -20 || n.x > w + 20) n.vx *= -1;
+        if (n.y < -20 || n.y > h + 20) n.vy *= -1;
+
+        // マウス重力
+        if (mouse.active) {
+          const dx = mouse.x - n.x, dy = mouse.y - n.y;
+          const d = Math.hypot(dx, dy) || 1;
+          const f = Math.min(0.05, 18 / (d * d));
+          n.vx += f * dx; n.vy += f * dy;
+          n.vx = Math.max(-1.2, Math.min(1.2, n.vx));
+          n.vy = Math.max(-1.2, Math.min(1.2, n.vy));
+        }
+
+        // 描画
+        ctx.fillStyle = emerald;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      req = window.requestAnimationFrame(step);
+    }
+
+    // 入力
+    cvs.addEventListener('mousemove', (e) => {
+      const rect = cvs.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+    cvs.addEventListener('mouseleave', () => { mouse.active = false; });
+
+    // リサイズ＆起動
+    const boot = () => { resize(); init(); cancelAnimationFrame(req); step(); };
+
+    // 動きを減らす設定に配慮
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function handleReduce() {
+      if (prefersReduce.matches) {
+        cancelAnimationFrame(req);
+        ctx.clearRect(0, 0, w, h);
+      } else {
+        boot();
+      }
+    }
+    prefersReduce.addEventListener?.('change', handleReduce);
+
+    window.addEventListener('resize', () => {
+      clearTimeout(window.__rt);
+      window.__rt = setTimeout(boot, 150);
+    });
+
+    handleReduce();
+  })();
+  </script>
 </body>
 </html>
