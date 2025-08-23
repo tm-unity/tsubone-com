@@ -93,7 +93,7 @@ h1{
 .footer a{color:var(--emerald);text-decoration:none}
 .footer a:hover{color:var(--emerald-ink);text-decoration:underline}
 
-/* --- Buttons: Portal / Apply / Unity (with arrows) --- */
+/* --- Buttons: Portal / Apply / Unity --- */
 .nav-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
 .btn{
   --pad-y:.66em; --pad-x:1.2em;
@@ -135,27 +135,17 @@ h1{
   box-shadow: none;
 }
 
-/* Arrow icons via pseudo elements */
+/* --- Arrows (robust unicode) --- */
 .btn[data-dir="left"]::before,
 .btn[data-dir="up"]::before,
 .btn[data-dir="right"]::after{
-  content:"";
-  display:inline-block;
-  width:.6em;height:.6em;
-  border:2px solid currentColor;
-  border-left:0;border-bottom:0;
-  transform: rotate(45deg);
+  font-weight:700;
+  line-height:1;
+  opacity:.95;
 }
-.btn[data-dir="left"]::before{ /* ← */
-  border-right:0;border-top:0;border-left:2px solid currentColor;border-bottom:2px solid currentColor;
-  transform: rotate(-135deg); margin-right:.1em;
-}
-.btn[data-dir="up"]::before{ /* ↑ */
-  transform: rotate(-45deg); margin-right:.1em;
-}
-.btn[data-dir="right"]::after{ /* → */
-  margin-left:.1em;
-}
+.btn[data-dir="left"]::before{  content:"←"; margin-right:.35em; }  /* Apply */
+.btn[data-dir="up"]::before{    content:"↑"; margin-right:.35em; }  /* Portal */
+.btn[data-dir="right"]::after{  content:"→"; margin-left:.35em; }  /* Unity */
 
 /* Small label (JP) next to EN */
 .badge{
@@ -198,12 +188,12 @@ h1{
 /* 🚩 全canvasに共通デザインを適用 */
 canvas{
   display:block;
-  margin: 0 auto 24px auto; /* 上下タイルと余白揃え */
-  border-radius: 12px;
-  background: var(--panel);
-  max-width: 720px;   /* hero と同じ幅 */
-  width: 100%;
-  height: auto;
+  margin:0 auto 24px auto;     /* 上下タイルと余白揃え */
+  border-radius:12px;
+  background:var(--panel);
+  max-width:720px;             /* hero と同じ幅 */
+  width:100%;
+  height:auto;
 }
 
 /* --- Helpers --- */
