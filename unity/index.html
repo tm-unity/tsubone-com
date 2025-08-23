@@ -1,32 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <title>Unity（活動広場）| TSUBONE Com-Unity</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/style.css" />
+  <title>Unity（活動広場） | TSUBONE Com Unity</title>
+  <meta name="description" content="TSUBONE Com Unity — 活動広場（Unity）。" />
+
+  <style>
+    :root{
+      --bg:#0d1117; --ink:#e6edf3; --muted:#8b949e;
+      --emerald:#3fb950; --emerald-d:#2e8b57;
+      --panel:#161b22; --border:#30363d;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",Arial,sans-serif;
+      line-height:1.75; letter-spacing:.01em;
+      display:grid; place-items:center; text-align:center; padding:24px;
+    }
+
+    /* 背景：うっすら水紋（Portalと統一） */
+    .bg{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+      background:
+        radial-gradient(60rem 60rem at 20% 10%, #16202a 0%, transparent 60%),
+        radial-gradient(80rem 80rem at 80% 120%, #121a22 0%, transparent 60%), var(--bg);}
+    .bg::after{content:""; position:absolute; inset:0; opacity:.35; mix-blend-mode:screen;
+      background-image:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,.05) 0 1px, transparent 2px);
+      background-size:160px 160px, 220px 220px;}
+
+    .wrap{width:min(100%,980px)}
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+      padding:clamp(28px,5vw,56px); margin-bottom:14px;
+    }
+    h1{margin:0 0 .6rem; font-size:clamp(26px,5vw,40px); color:var(--emerald); font-weight:800; letter-spacing:.02em}
+    .com-unity-underline{
+      text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .18em;
+    }
+    .tagline-en{margin:.2rem 0 0; color:var(--muted); font-size:clamp(13px,2.2vw,16px)}
+
+    /* 矢印ボタン */
+    .nav{display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.7rem 1.2rem; border-radius:12px; text-decoration:none;
+      background:#21262d; color:var(--emerald); border:1px solid var(--border);
+      font-weight:700; transition:background .2s ease, transform .08s ease;
+    }
+    .btn:hover{background:#2a3139; transform:translateY(-1px)}
+    .btn-apply::before{content:"←";}
+    .btn-portal::before{content:"↑";}
+
+    .foot{margin-top:10px; font-size:12px; color:#9aa3ad}
+
+    /* 仮カード（将来の機能の置き土台：任意） */
+    .grid{
+      display:grid; gap:12px; margin-top:16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      text-align:left;
+    }
+    .card{
+      background:#11161c; border:1px solid rgba(255,255,255,.10);
+      border-radius:14px; padding:14px 16px;
+    }
+    .card h3{margin:.2rem 0 .4rem; color:var(--ink); font-size:1rem}
+    .card p{margin:0; color:var(--muted); font-size:.92rem}
+  </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
+
   <main class="wrap">
-    <section class="hero" role="region" aria-labelledby="title">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1 id="title"><span class="accent">Unity（活動広場）</span></h1>
-          <p class="tagline-en" style="margin:.25rem 0 0;">Under Construction</p>
+    <section class="hero" role="region" aria-labelledby="unity-title">
+      <h1 id="unity-title">Unity（活動広場） — TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span></h1>
+      <p class="tagline-en">Under Construction — A space for connection, sharing, and growth.</p>
+
+      <p style="margin-top:10px">
+        このスペースは現在 <span style="color:var(--emerald)">準備中</span> です。<br>
+        今後、検索・掲示・ランク（ポイント）・招待などのアクティビティをここに集約します。
+      </p>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="/apply/" class="btn btn-apply" accesskey="a" title="Alt+A">Apply</a>
+        <a href="/" class="btn btn-portal" accesskey="p" title="Alt+P">Portal</a>
+      </nav>
+    </section>
+
+    <!-- 将来の機能プレースホルダー（任意。不要ならこのsectionを削除可） -->
+    <section class="hero" aria-label="Planned Modules">
+      <div class="grid">
+        <div class="card">
+          <h3>Search</h3>
+          <p>仲間・タグ・年度で検索。</p>
+        </div>
+        <div class="card">
+          <h3>Announcements</h3>
+          <p>運営からの大事なお知らせ。</p>
+        </div>
+        <div class="card">
+          <h3>Rank & Points</h3>
+          <p>Graphite → Diamond の鉱物ランク。</p>
+        </div>
+        <div class="card">
+          <h3>Invites</h3>
+          <p>推薦・承認キューの管理。</p>
         </div>
       </div>
-
-      <p>このスペースは現在 <strong>準備中</strong> です。<br>
-      将来的には、仲間が集い交流する“広場”として開放します。</p>
-
-      <nav class="cta" style="margin-top:18px">
-        <a class="btn secondary" href="/">← トップへ</a>
-        <a class="btn primary" href="/entry/">Entry（登録窓口）</a>
-      </nav>
-
-      <footer class="foot">© 2025 TSUBONE Com-Unity</footer>
+      <div class="foot">© 2025 TSUBONE Com Unity</div>
     </section>
   </main>
 </body>
