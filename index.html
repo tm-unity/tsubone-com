@@ -6,24 +6,114 @@
   <title>Portal | TSUBONE Com Unity</title>
   <meta name="description" content="TSUBONE Com Unity — 緩やかにつながって、友情を醸しましょう。" />
   <meta name="color-scheme" content="dark" />
-  <!-- 共通スタイル（エメラルド色・ボタン等） -->
-  <link rel="stylesheet" href="/style.css" />
+  <style>
+    :root {
+      --emerald: #56d364; /* 淡いエメラルド */
+      --bg: #0d1117;
+      --panel: #161b22;
+      --muted: #8b949e;
+      --text: #e6edf3;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 16px;
+    }
+
+    .hero {
+      background: var(--panel);
+      padding: 32px;
+      border-radius: 12px;
+      max-width: 720px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    .com-unity-underline {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      color: var(--emerald);
+    }
+
+    .tagline-ja {
+      font-size: 1.1em;
+      margin-bottom: 0.3em;
+    }
+    .tagline-en {
+      font-size: 0.95em;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 1.5em;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6em 1.2em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #30363d;
+      background: #21262d;
+      color: var(--emerald);
+      transition: background 0.25s;
+    }
+    .btn:hover {
+      background: #30363d;
+    }
+    .btn.disabled {
+      color: var(--muted);
+      pointer-events: none;
+      border-color: #21262d;
+    }
+
+    .net-canvas {
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .foot {
+      font-size: 0.85em;
+      margin-top: 8px;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body class="welcome">
-  <div class="bg" aria-hidden="true"></div>
-
   <main class="wrap">
     <section class="hero" role="region" aria-labelledby="portal-title">
       <h1 id="portal-title">Welcome to TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span>!</h1>
-      <!-- 「信頼」→「友情」 に更新 -->
       <p class="tagline-ja">緩やかにつながって、友情を醸しましょう。</p>
       <p class="tagline-en">Let us connect gently and foster friendship.</p>
 
-      <!-- ボタン順・矢印・現在ページ無効化を修正 -->
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/apply/" class="btn btn-apply">← Apply</a>
-        <a class="btn btn-portal" aria-current="page">↑ Portal</a>
-        <a href="/unity/" class="btn btn-unity">Unity →</a>
+        <a href="/apply/" class="btn">← Apply</a>
+        <a href="/" class="btn disabled">↑ Portal</a>
+        <a href="/unity/" class="btn">Unity →</a>
       </nav>
     </section>
 
@@ -32,13 +122,13 @@
 
     <section class="hero" role="region" aria-label="Contact & Credit" style="padding:16px 24px">
       <div style="color:var(--muted)">QR先：<strong>tsubone.com</strong> ／
-        <a href="mailto:contact@tsubone.com" style="color:#8ecae6; text-decoration:none">お問い合わせ</a>
+        <a href="mailto:contact@tsubone.com" style="color:var(--emerald); text-decoration:none">お問い合わせ</a>
       </div>
       <div class="foot">© 2025 TSUBONE Com Unity</div>
     </section>
   </main>
 
-  <!-- ネットワーク描画（依存なし） -->
+  <!-- ネットワーク描画 -->
   <script>
   (() => {
     const cvs = document.getElementById('net');
@@ -50,8 +140,8 @@
     const MAX_R = 2.2;
     const LINK = 110;
     const nodes = [];
-    const emerald = '#3fb950';
-    const lineBase = 'rgba(63,185,80,';
+    const emerald = getComputedStyle(document.documentElement).getPropertyValue('--emerald').trim();
+    const lineBase = 'rgba(86,211,100,'; // #56d364 を RGBA にした値
 
     const mouse = {x: -9999, y: -9999, active: false};
 
