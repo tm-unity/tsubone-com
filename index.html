@@ -1,134 +1,51 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <title>Welcome | tsubone.com</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Unity — 軽やかにつながり、しゃんと育つ。">
-  <style>
-    :root{
-      --bg:#0b0f14;            /* 暗めの藍 */
-      --card:#0f141b;          /* さらに深い藍 */
-      --ink:#e9eef5;           /* ほぼ白 */
-      --muted:#a9b6c6;
-      --accent:#43b4a8;        /* 青緑（穏やかな差し色） */
-      --accent2:#8ecae6;       /* 水色（ホバーなど） */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; color:var(--ink); background:var(--bg);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",Arial,sans-serif;
-      line-height:1.6; letter-spacing:.01em;
-      display:grid; place-items:center;
-    }
-    /* 水紋背景（SVG） */
-    .bg{
-      position:fixed; inset:0; z-index:-1; opacity:.22; pointer-events:none;
-      background:
-        radial-gradient(60rem 60rem at 20% 10%, #1a2430 0%, transparent 60%),
-        radial-gradient(80rem 80rem at 80% 120%, #13202a 0%, transparent 60%),
-        #0b0f14;
-    }
-    .bg::after{
-      content:"";
-      position:absolute; inset:0;
-      background-image:
-        radial-gradient(circle at 50% 48%, rgba(255,255,255,.06) 0 2px, transparent 3px),
-        radial-gradient(circle at 52% 52%, rgba(255,255,255,.05) 0 1px, transparent 2px);
-      background-size: 160px 160px, 220px 220px; /* 微細な水紋感 */
-      mix-blend-mode:screen;
-      opacity:.35;
-    }
-
-    .wrap{
-      width:min(100%,980px); padding:32px;
-    }
-    .hero{
-      border-radius:20px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-      padding: clamp(28px, 5vw, 56px);
-    }
-    .brand{
-      display:flex; align-items:center; gap:16px; margin-bottom:14px;
-    }
-    .logo{
-      width:42px; height:42px; border-radius:12px;
-      background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent));
-      box-shadow: 0 6px 18px rgba(67,180,168,.35);
-    }
-    h1{
-      margin:0; font-weight:700; letter-spacing:.02em;
-      font-size:clamp(26px, 5vw, 40px);
-    }
-    .tagline{
-      margin:.4rem 0 1.2rem; color:var(--muted);
-      font-size:clamp(14px, 2.4vw, 17px);
-    }
-
-    .cta{
-      display:flex; gap:14px; flex-wrap:wrap; margin:22px 0 4px;
-    }
-    .btn{
-      appearance:none; border:none; cursor:pointer;
-      padding:14px 22px; border-radius:14px; font-weight:600; letter-spacing:.02em;
-      color:#0b0f14; background:var(--accent);
-      box-shadow: 0 10px 24px rgba(67,180,168,.35), inset 0 1px 0 rgba(255,255,255,.25);
-      transition: transform .08s ease, background .2s ease, box-shadow .2s ease;
-      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
-    }
-    .btn:hover{ transform: translateY(-1px); background:#3aaea1; }
-    .btn:active{ transform: translateY(0); box-shadow: 0 6px 16px rgba(67,180,168,.28); }
-
-    .btn.secondary{
-      background:#222a33; color:var(--ink);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .btn.secondary:hover{ background:#283241; }
-
-    .links{
-      margin-top:12px; color:var(--muted); font-size:14px;
-    }
-    .links a{ color:var(--accent2); text-decoration:none; }
-    .links a:hover{ text-decoration:underline; }
-
-    footer{
-      margin-top:18px; color:#7f8a99; font-size:12px;
-    }
-
-    /* レスポンシブ微調整 */
-    @media (max-width:520px){
-      .cta{ gap:10px }
-      .btn{ width:100%; justify-content:center; }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <title>TSUBONE Com-Unity | Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TSUBONE Com-Unity — 緩やかにつながって、信頼を醸しましょう。" />
+  <link rel="preload" href="/style.css" as="style" />
+  <link rel="stylesheet" href="/style.css" />
+  <!-- 追々使う場合だけ favicon 群（/img に置いたら有効化）
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TSUBONE Com-Unity" />
+  <meta property="og:description" content="緩やかにつながって、信頼を醸しましょう。" />
+  <meta property="og:url" content="https://tsubone.com/" />
+  <meta property="og:image" content="https://tsubone.com/img/og-image.png" />
+  <meta name="theme-color" content="#000000" />
 </head>
 <body>
+  <!-- 背景（薄い水紋ニュアンス） -->
   <div class="bg" aria-hidden="true"></div>
 
   <main class="wrap">
-    <section class="hero">
+    <section class="hero" role="region" aria-labelledby="site-title">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Welcome to <span style="color:var(--accent)">Unity</span></h1>
-          <div class="tagline">軽やかにつながり、しゃんと育つ。</div>
+          <h1 id="site-title">Welcome to <span class="accent">TSUBONE Com-Unity!</span></h1>
+          <p class="tagline-ja">緩やかにつながって、信頼を醸しましょう。</p>
+          <p class="tagline-en">Let us connect gently and foster trust.</p>
         </div>
       </div>
 
-      <div class="cta">
-        <a class="btn" href="https://entry.tsubone.com" rel="noopener">Entry — 参加窓口</a>
-        <a class="btn secondary" href="https://unity.tsubone.com" rel="noopener">Unity — 活動スペース</a>
-      </div>
+      <nav class="cta" aria-label="Primary">
+        <a class="btn primary" href="/entry/">Entry（登録窓口）</a>
+        <a class="btn secondary" href="/unity/">Unity（活動広場）</a>
+      </nav>
 
       <div class="links">
         <span>QR先：<strong>tsubone.com</strong></span> ／
         <a href="mailto:contact@tsubone.com">お問い合わせ</a>
       </div>
 
-      <footer>© 2025 tsubone.com</footer>
+      <footer class="foot">© 2025 TSUBONE Com-Unity</footer>
     </section>
   </main>
 </body>
