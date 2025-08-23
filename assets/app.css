@@ -126,8 +126,8 @@ h1{
 hr.div{height:1px; border:0; background:linear-gradient(90deg,transparent,#223244,transparent); margin:24px 0}
 .foot, footer{margin-top:10px; font-size:12px; color:#9aa3ad}
 
-/* ---- Page Namespaces (必要なら) ----
-   例：.welcome h1 .com-unity-underline { ... }
-   例：.apply .card.disabled { ... }
-   例：.unity .grid { ... }
+/* ---- Page Namespaces (必要なら)
+   .welcome … index.html
+   .apply   … /apply/
+   .unity   … /unity/
 */
