@@ -1,0 +1,133 @@
+/* =========================
+   TSUBONE Com Unity — app.css
+   ========================= */
+
+/* ---- Theme Tokens ---- */
+:root{
+  --bg:#0d1117;
+  --ink:#e6edf3;
+  --muted:#8b949e;
+
+  /* エメラルドは全ページで “#3fb950” に統一 */
+  --emerald:#3fb950;
+  --emerald-deep:#2e8b57;
+
+  --panel:#161b22;
+  --panel-2:#0f1720;
+  --border:#30363d;
+
+  --radius:20px;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+/* ---- Base ---- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--ink); background:var(--bg);
+  font:16px/1.75 system-ui, -apple-system, "Hiragino Sans", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  letter-spacing:.01em;
+}
+
+/* ---- Background (water-like) ---- */
+.bg{
+  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+  background:
+    radial-gradient(60rem 60rem at 20% 10%, #16202a 0%, transparent 60%),
+    radial-gradient(80rem 80rem at 80% 120%, #121a22 0%, transparent 60%),
+    var(--bg);
+}
+.bg::after{
+  content:""; position:absolute; inset:0; opacity:.35; mix-blend-mode:screen;
+  background-image:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+    radial-gradient(circle at 52% 52%, rgba(255,255,255,.05) 0 1px, transparent 2px);
+  background-size:160px 160px, 220px 220px;
+}
+
+/* ---- Layout ---- */
+.wrap{width:min(100%,980px); margin-inline:auto; padding:24px}
+.hero{
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:clamp(28px,5vw,56px);
+  margin:14px auto;
+}
+
+/* ---- Headings / Taglines ---- */
+h1{
+  margin:0 0 .6rem;
+  font-size:clamp(26px,5vw,40px);
+  font-weight:800; letter-spacing:.02em;
+  color:var(--emerald);
+}
+.com-unity-underline{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:.18em;
+}
+.tagline-ja{margin:.2rem 0 0; font-size:clamp(15px,2.4vw,17px)}
+.tagline-en{margin:.2rem 0 0; color:var(--muted); font-size:clamp(13px,2.2vw,16px)}
+
+/* ---- Buttons ---- */
+.nav{display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px}
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.7rem 1.2rem; border-radius:12px; text-decoration:none;
+  background:#21262d; color:var(--emerald);
+  border:1px solid var(--border);
+  font-weight:700; transition:background .2s ease, transform .08s ease;
+}
+.btn:hover{background:#2a3139; transform:translateY(-1px)}
+.btn .ic{font-weight:900}
+.btn-apply::before{content:"←";}
+.btn-unity::after{content:"→";}
+.btn-portal::before{content:"↑";}
+
+/* ---- Network Canvas (トップの動くアート用) ---- */
+.net-canvas{
+  display:block; width:100%; height:auto;
+  margin:12px auto 6px; border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+}
+
+/* ---- Cards / Grid (Unity & Apply 共通) ---- */
+.grid{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+  display:grid; gap:16px;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+}
+@media (max-width:720px){ .grid{grid-template-columns:1fr} }
+
+.card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px; background:#0e1722;
+  position:relative; min-height:92px;
+}
+.card h3{margin:0 0 6px; font-size:16px}
+.card p{margin:0; color:var(--muted); font-size:14px}
+.card.disabled{opacity:.55; filter:saturate(.6)}
+.badge{
+  position:absolute; top:10px; right:12px;
+  font-size:12px; color:#6990a6; background:#13202c;
+  padding:.25em .6em; border-radius:999px; border:1px solid #1e2f3e;
+}
+
+/* ---- Dividers & Footer ---- */
+hr.div{height:1px; border:0; background:linear-gradient(90deg,transparent,#223244,transparent); margin:24px 0}
+.foot, footer{margin-top:10px; font-size:12px; color:#9aa3ad}
+
+/* ---- Page Namespaces (必要なら) ----
+   例：.welcome h1 .com-unity-underline { ... }
+   例：.apply .card.disabled { ... }
+   例：.unity .grid { ... }
+*/
