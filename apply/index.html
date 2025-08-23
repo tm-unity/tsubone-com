@@ -5,52 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Apply — TSUBONE Com Unity</title>
   <meta name="color-scheme" content="dark" />
-  <link rel="stylesheet" href="/assets/app.css?v=2025-08-24a" />
+  <meta name="description" content="TSUBONE Com Unity — 参加申請（準備中）。招待＋推薦／ポイント制／鉱物ランクで運用します。" />
+  <!-- Portal と同じCSSに統一 -->
+  <link rel="stylesheet" href="/style.css?v=2025-08-24c" />
 </head>
-<body class="apply">
-  <div class="bg" aria-hidden="true"></div>
+<body>
+  <div class="container">
 
-  <main class="wrap">
-    <section class="hero">
-      <h1>Apply — TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span></h1>
-      <p class="tagline-en">Join the Network (Under Construction)</p>
+    <!-- HERO -->
+    <section class="hero" role="region" aria-labelledby="apply-title">
+      <div class="title-row">
+        <span class="kicker" aria-hidden="true"></span>
+        <h1 id="apply-title">
+          Apply — TSUBONE <span class="brand-emerald">Com&nbsp;Unity</span>
+        </h1>
+      </div>
 
-      <p style="margin-top:10px">
-        参加申請ページは現在 <span style="color:var(--emerald)">準備中</span> です。<br>
-        方針は「招待＋推薦」「ポイント制」「鉱物ランク（Graphite → Diamond）」で運用します。
-      </p>
+      <!-- 日本語／英語の説明（Portalと同じ並び） -->
+      <p class="lead">参加申請ページは現在 <span class="badge">準備中</span> です。</p>
+      <p class="sub">Join the Network (Under Construction)</p>
 
-      <nav class="nav">
-        <a class="btn btn-portal" href="/" accesskey="p" title="Alt+P">Portal</a>
-        <a class="btn btn-unity" href="/unity/" accesskey="u" title="Alt+U">Unity</a>
+      <!-- ナビ：← Apply（非活性）／ ↑ Portal ／ Unity → -->
+      <nav class="nav-row" aria-label="Primary navigation">
+        <a class="btn" href="#" aria-current="page" data-dir="left">Apply</a>
+        <a class="btn" href="/" data-dir="up" accesskey="p" title="Alt+P">Portal</a>
+        <a class="btn" href="/unity/" data-dir="right" accesskey="u" title="Alt+U">Unity</a>
       </nav>
+
+      <div class="hr" aria-hidden="true"></div>
     </section>
 
-    <section class="hero" aria-label="Planned Modules (Apply)">
+    <!-- 計画モジュール（カード並び） -->
+    <section class="section" role="region" aria-label="Planned modules">
       <div class="grid">
-        <article class="card disabled">
+        <article class="card">
           <span class="badge">準備中</span>
           <h3>Search</h3>
           <p>仲間・タグ・年度で検索。</p>
         </article>
-        <article class="card disabled">
+
+        <article class="card">
           <span class="badge">準備中</span>
           <h3>Announcements</h3>
           <p>運営からの大事なお知らせ。</p>
         </article>
-        <article class="card disabled">
+
+        <article class="card">
           <span class="badge">準備中</span>
           <h3>Rank &amp; Points</h3>
-          <p>Graphite → Diamond の鉱物ランク。</p>
+          <p>鉱物ランク（Graphite → Diamond）。</p>
         </article>
-        <article class="card disabled">
+
+        <article class="card">
           <span class="badge">準備中</span>
           <h3>Invites</h3>
           <p>推薦・承認キューの管理。</p>
         </article>
       </div>
-      <div class="foot">© 2025 TSUBONE Com Unity</div>
     </section>
-  </main>
+
+    <!-- フッター（Portalと同じ意匠） -->
+    <footer class="footer" role="contentinfo">
+      <div>QR先：<strong>tsubone.com</strong> ／
+        <a href="mailto:contact@tsubone.com">お問い合わせ</a>
+      </div>
+      <div class="mt-2">© 2025 TSUBONE Com Unity</div>
+    </footer>
+
+  </div>
 </body>
 </html>
