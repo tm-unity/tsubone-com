@@ -7,7 +7,7 @@
   <meta name="description" content="TSUBONE Com Unity — 緩やかにつながって、信頼を醸しましょう。" />
   <link rel="preload" href="/style.css" as="style" />
   <link rel="stylesheet" href="/style.css" />
-  <!-- 追々使う場合だけ favicon 群（/img に置いたら有効化）
+  <!-- 必要なら後で有効化するfavicon群
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -19,9 +19,28 @@
   <meta property="og:url" content="https://tsubone.com/" />
   <meta property="og:image" content="https://tsubone.com/img/og-image.png" />
   <meta name="theme-color" content="#000000" />
+
+  <style>
+    /* ページ内の最小追加: 「Com Unity」の下線＆ネットワークキャンバスの見た目 */
+    .com-unity-underline{
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: .14em;
+    }
+    .net-canvas{
+      display:block;
+      width:100%;
+      height:auto;
+      margin: 12px auto 6px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+  </style>
 </head>
 <body>
-  <!-- 背景（薄い水紋ニュアンス） -->
+  <!-- 背景（水紋ニュアンス、/style.css で定義済み） -->
   <div class="bg" aria-hidden="true"></div>
 
   <main class="wrap">
@@ -29,7 +48,9 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1 id="site-title">Welcome to <span class="accent">TSUBONE Com Unity!</span></h1>
+          <h1 id="site-title">
+            Welcome to <span class="accent">TSUBONE <span class="com-unity-underline">Com&nbsp;Unity</span>!</span>
+          </h1>
           <p class="tagline-ja">緩やかにつながって、信頼を醸しましょう。</p>
           <p class="tagline-en">Let us connect gently and foster trust.</p>
         </div>
@@ -39,14 +60,140 @@
         <a class="btn primary" href="/entry/">Entry（登録窓口）</a>
         <a class="btn secondary" href="/unity/">Unity（活動広場）</a>
       </nav>
+    </section>
 
+    <!-- ヒーロー直下：軽量ネットワーク・アート -->
+    <canvas id="net" class="net-canvas" aria-hidden="true"></canvas>
+
+    <section class="hero" role="region" aria-label="Contact & Credit" style="margin-top:18px">
       <div class="links">
         <span>QR先：<strong>tsubone.com</strong></span> ／
         <a href="mailto:contact@tsubone.com">お問い合わせ</a>
       </div>
-
       <footer class="foot">© 2025 TSUBONE Com Unity</footer>
     </section>
   </main>
+
+  <!-- 軽量ネットワーク描画スクリプト -->
+  <script>
+  (() => {
+    const cvs = document.getElementById('net');
+    const ctx = cvs.getContext('2d');
+    let dpi = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    let w = 0, h = 0;
+
+    const N = 60;                 // ノード数
+    const MAX_R = 2.2;            // 半径
+    const LINK = 110;             // 接続しきい距離(px)
+    const nodes = [];
+    const emerald = '#50c878';
+    const lineBase = 'rgba(80,200,120,'; // alphaで濃淡
+
+    const mouse = {x: -9999, y: -9999, active: false};
+
+    function resize() {
+      const base = document.querySelector('.wrap') || document.body;
+      const rect = base.getBoundingClientRect();
+      w = Math.floor(rect.width);
+      h = Math.floor(Math.max(300, Math.min(420, window.innerHeight * 0.42)));
+      cvs.style.width = w + 'px';
+      cvs.style.height = h + 'px';
+      cvs.width = Math.floor(w * dpi);
+      cvs.height = Math.floor(h * dpi);
+      ctx.setTransform(dpi, 0, 0, dpi, 0, 0);
+    }
+
+    function init() {
+      nodes.length = 0;
+      for (let i = 0; i < N; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - .5) * .35,
+          vy: (Math.random() - .5) * .35,
+          r: Math.random() * (MAX_R - 1) + 1
+        });
+      }
+    }
+
+    let req;
+    function step() {
+      ctx.clearRect(0, 0, w, h);
+
+      // 線
+      for (let i = 0; i < N; i++) {
+        for (let j = i + 1; j < N; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const d = Math.hypot(dx, dy);
+          if (d < LINK) {
+            const alpha = 0.18 * (1 - d / LINK);
+            ctx.strokeStyle = lineBase + alpha + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // ノード（漂い＋弱いマウス重力）
+      for (let i = 0; i < N; i++) {
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < -20 || n.x > w + 20) n.vx *= -1;
+        if (n.y < -20 || n.y > h + 20) n.vy *= -1;
+
+        if (mouse.active) {
+          const dx = mouse.x - n.x, dy = mouse.y - n.y;
+          const d = Math.hypot(dx, dy) || 1;
+          const f = Math.min(0.05, 18 / (d * d));
+          n.vx += f * dx; n.vy += f * dy;
+          n.vx = Math.max(-1.2, Math.min(1.2, n.vx));
+          n.vy = Math.max(-1.2, Math.min(1.2, n.vy));
+        }
+
+        ctx.fillStyle = emerald;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      req = window.requestAnimationFrame(step);
+    }
+
+    // 入力
+    cvs.addEventListener('mousemove', (e) => {
+      const rect = cvs.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+    cvs.addEventListener('mouseleave', () => { mouse.active = false; });
+
+    // リサイズ
+    const boot = () => { resize(); init(); cancelAnimationFrame(req); step(); };
+
+    // 動きを減らす設定に配慮
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function handleReduce() {
+      if (prefersReduce.matches) {
+        cancelAnimationFrame(req);
+        ctx.clearRect(0, 0, w, h);
+      } else {
+        boot();
+      }
+    }
+    prefersReduce.addEventListener?.('change', handleReduce);
+
+    window.addEventListener('resize', () => {
+      clearTimeout(window.__rt);
+      window.__rt = setTimeout(boot, 150);
+    });
+
+    handleReduce();
+  })();
+  </script>
 </body>
 </html>
