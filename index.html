@@ -13,6 +13,7 @@
     }
     .brand-emerald {
       font-weight: bold;
+      color: white;
     }
     .u {
       color: #5a4fcf;
@@ -75,9 +76,8 @@
     const LINK = 110;
     const nodes = [];
 
-    const emerald = getComputedStyle(document.documentElement)
-                     .getPropertyValue('--emerald').trim() || '#3fb950';
-    const lineBase = 'rgba(63,185,80,';
+    const nodeColor = '#5a4fcf';
+    const lineBase = 'rgba(90, 79, 207,'; // same hue as ∪
 
     function resize() {
       const rect = wrap.getBoundingClientRect();
@@ -141,7 +141,7 @@
           n.vy = Math.max(-1.2, Math.min(1.2, n.vy));
         }
 
-        ctx.fillStyle = emerald;
+        ctx.fillStyle = nodeColor;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fill();
