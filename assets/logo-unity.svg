@@ -1,11 +1,25 @@
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad" cx="50%" cy="60%" r="70%">
+    <!-- グラデーション定義（紫 → 白） -->
+    <radialGradient id="grad" cx="50%" cy="50%" r="60%" fx="50%" fy="60%">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#3a2c82" />
+      <stop offset="100%" stop-color="#7362ff" />
     </radialGradient>
+
+    <!-- ∪のマスク（塗りつぶさない範囲） -->
+    <mask id="u-mask">
+      <!-- 全体を白で塗ってマスクのベースに -->
+      <rect x="0" y="0" width="120" height="120" fill="white" rx="20" ry="20" />
+      <!-- ∪形状（黒 = 透明部分） -->
+      <path d="M40,40 C40,70 80,70 80,40" stroke="black" stroke-width="12" fill="none"
+            stroke-linecap="round" />
+    </mask>
   </defs>
-  <rect width="512" height="512" rx="100" fill="url(#grad)" />
-  <path d="M160,170 a96,96 0 0,1 192,0 v110 a96,96 0 0,1 -192,0 z" fill="white"/>
+
+  <!-- 本体（角丸正方形＋マスク適用＋グラデーション） -->
+  <rect x="0" y="0" width="120" height="120"
+        rx="20" ry="20"
+        fill="url(#grad)"
+        mask="url(#u-mask)" />
 </svg>
