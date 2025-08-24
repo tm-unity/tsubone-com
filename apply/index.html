@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Apply</title>
+  <title>Apply〔参加申請〕</title>
   <meta name="color-scheme" content="dark" />
   <meta name="description" content="TSUBONE Com Unity — 参加申請（準備中）。招待＋推薦／ポイント制／鉱物ランクで運用します。" />
   <link rel="stylesheet" href="/style.css?v=2025-08-24c" />
@@ -15,19 +15,22 @@
     <section class="hero" role="region" aria-labelledby="apply-title">
       <div class="title-row">
         <span class="kicker" aria-hidden="true"></span>
-        <h1 id="apply-title">
-          〔参加申請〕
-        </h1>
+        <h1 id="apply-title">Apply〔参加申請〕</h1>
       </div>
 
       <p class="lead">参加申請ページは現在 <span class="badge">準備中</span> です。</p>
       <p class="sub">Join the Network (Under Construction)</p>
 
-      <nav class="nav-row" aria-label="Primary navigation">
-        <a class="btn" href="#" aria-current="page" data-dir="left">Apply</a>
-        <a class="btn" href="/" data-dir="up" accesskey="p" title="Alt+P">Portal</a>
-        <a class="btn" href="/unity/" data-dir="right" accesskey="u" title="Alt+U">Unity</a>
-      </nav>
+      <!-- 2段ナビ：中央に Portal、下段に Apply / Unity -->
+      <div class="nav-grid">
+        <div class="nav-row nav-row--center">
+          <a class="btn" href="/" data-dir="up" accesskey="p" title="Alt+P">Portal</a>
+        </div>
+        <div class="nav-row">
+          <a class="btn" href="#" aria-current="page" data-dir="left">Apply</a>
+          <a class="btn" href="/unity/" data-dir="right" accesskey="u" title="Alt+U">Unity</a>
+        </div>
+      </div>
 
       <div class="hr" aria-hidden="true"></div>
     </section>
