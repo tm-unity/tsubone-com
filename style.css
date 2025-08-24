@@ -7,7 +7,7 @@
   --panel-2:#0b1016;         /* deep layer */
   --text:#e6edf3;            /* base text */
   --muted:#9aa4af;           /* secondary text */
-  --line:#222a33;            /* dividers */
+  --line:#3a4552;            /* updated line color for visibility */
   --emerald:#3fb950;         /* brand emerald */
   --emerald-ink:#22c55e;     /* brighter hover */
   --btn-dark:#1a2129;        /* button base */
@@ -99,7 +99,7 @@ h1{
   --pad-y:.66em; --pad-x:1.2em;
   border-radius:12px;
   padding:var(--pad-y) var(--pad-x);
-  border:1px solid var(--line);
+  border:1px solid var(--line); /* updated for visibility */
   background: linear-gradient(180deg, var(--btn-dark), #141a21);
   color:var(--text);
   text-decoration:none;
@@ -111,7 +111,7 @@ h1{
 }
 .btn:hover{
   transform: translateY(-1px);
-  border-color:#2b343f;
+  border-color:#4b5763; /* slightly brighter */
   box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.02) inset;
 }
 .btn:active{transform:translateY(0)}
