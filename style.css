@@ -1,213 +1,247 @@
-/* ===== TSUBONE Com Unity - shared style.css ===== */
+/* ===== TSUBONE Com∪nity - shared style.css ===== */
 
 /* --- Theme tokens (easy to tweak) --- */
-:root{
-  --bg:#0d1117;              /* page background */
-  --panel:#0f141a;           /* cards/panels */
-  --panel-2:#0b1016;         /* deep layer */
-  --text:#e6edf3;            /* base text */
-  --muted:#9aa4af;           /* secondary text */
-  --line:#3a4552;            /* updated line color for visibility */
-  --brand:#7362ff;           /* brand purple (∪ color) */
-  --btn-dark:#1a2129;        /* button base */
+:root {
+  --bg: #0d1117;
+  --panel: #0f141a;
+  --panel-2: #0b1016;
+  --text: #e6edf3;
+  --muted: #9aa4af;
+  --line: #3a4552;
+  --brand: #7362ff;
+  --btn-dark: #1a2129;
   --shadow: 0 10px 30px rgba(0,0,0,.45);
-  --glow: 0 10px 30px rgba(115,98,255,.18); /* brand glow */
+  --glow: 0 10px 30px rgba(115,98,255,.18);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
+* { box-sizing: border-box }
+html, body { height: 100% }
+body {
+  margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans",
                "Helvetica Neue", Arial, "Segoe UI", "Noto Sans JP", sans-serif;
   background: radial-gradient(1200px 600px at 15% -10%, #0e1720 0%, #0d1117 40%, #0b0f14 100%);
-  color:var(--text);
-  line-height:1.75;
+  color: var(--text);
+  line-height: 1.75;
 }
 
 /* --- Layout shells --- */
-.container{
-  max-width:1100px;
-  margin:48px auto;
-  padding:0 22px;
+.container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 22px;
 }
-.hero{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:32px 28px 28px;
-  box-shadow:var(--shadow);
+.hero {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px 28px 28px;
+  box-shadow: var(--shadow);
 }
-.section{
-  margin-top:26px;
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:var(--shadow);
+.section {
+  margin-top: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
 }
 
 /* --- Title block --- */
-.kicker{
-  width:48px;
-  height:58px;
-  display:inline-block;
-  margin-right:12px;
-  border-radius:12px;
-  background: url("/assets/logo-unity.svg") center/cover no-repeat;
-  background-color: transparent;
+.kicker {
+  width: 48px;
+  height: 58px;
+  display: inline-block;
+  margin-right: 12px;
+  border-radius: 12px;
+  background: url("/assets/logo-unity.svg") center/contain no-repeat;
   flex-shrink: 0;
 }
-.title-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-h1{
-  margin:0;
-  font-size: clamp(28px, 3.2vw, 40px);
-  letter-spacing:.2px;
-  font-weight:800;
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
-.brand-emerald{
-  color:var(--brand);
-  font-weight:bold;
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 3.2vw, 40px);
+  letter-spacing: .2px;
+  font-weight: 800;
+}
+.brand-emerald {
+  color: var(--brand);
+  font-weight: bold;
   text-decoration: underline;
   text-decoration-thickness: .18em;
   text-underline-offset: .12em;
 }
 
-/* JP main line + EN sub line */
-.lead{margin:6px 0 2px;font-size:18px}
-.sub{margin:0;color:var(--muted);font-size:15px}
+/* --- Taglines --- */
+.lead {
+  margin: 6px 0 2px;
+  font-size: 18px;
+}
+.sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
 
-/* --- Divider line --- */
-.hr{
-  height:1px;border:0;background:linear-gradient(90deg, transparent, var(--line), transparent);
-  margin:22px 0 0;
+/* --- Divider --- */
+.hr {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+  margin: 22px 0 0;
 }
 
 /* --- Footer --- */
-.footer{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:20px 22px;
-  margin-top:22px;
-  box-shadow:var(--shadow);
-  color:var(--muted);
-  font-size:14px;
+.footer {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px 22px;
+  margin-top: 22px;
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 14px;
 }
-.footer a{color:inherit;text-decoration:underline}
-.footer a:hover{color:var(--text);text-decoration:underline}
+.footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
 
-/* --- Buttons: Portal / Apply / Unity --- */
-.nav-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-.btn{
-  --pad-y:.66em; --pad-x:1.2em;
-  border-radius:12px;
-  padding:var(--pad-y) var(--pad-x);
-  border:1px solid var(--line);
+/* --- Buttons --- */
+.nav-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.btn {
+  --pad-y: .66em;
+  --pad-x: 1.2em;
+  border-radius: 12px;
+  padding: var(--pad-y) var(--pad-x);
+  border: 1px solid var(--line);
   background: linear-gradient(180deg, var(--btn-dark), #141a21);
-  color:var(--text);
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:.2px;
-  display:inline-flex;align-items:center;gap:.55em;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
   box-shadow: var(--shadow);
   transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
 }
-.btn:hover{
+.btn:hover {
   transform: translateY(-1px);
-  border-color:#4b5763;
+  border-color: #4b5763;
   box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.02) inset;
 }
-.btn:active{transform:translateY(0)}
-
-.btn--primary{
-  color:#0b1a12;
+.btn:active {
+  transform: translateY(0);
+}
+.btn--primary {
+  color: #0b1a12;
   background: linear-gradient(180deg, rgba(115,98,255,.92), rgba(115,98,255,.82));
-  border:1px solid rgba(115,98,255,.9);
+  border: 1px solid rgba(115,98,255,.9);
   box-shadow: var(--glow), var(--shadow);
 }
-.btn--primary:hover{
+.btn--primary:hover {
   background: linear-gradient(180deg, rgba(115,98,255,.95), rgba(115,98,255,.85));
   border-color: rgba(115,98,255,.95);
 }
-
-.btn[aria-current="page"]{
-  pointer-events:none;
-  color:#7a8793;
-  border-color:#1f2730;
-  background:linear-gradient(180deg, #151b22, #131920);
+.btn[aria-current="page"] {
+  pointer-events: none;
+  color: #7a8793;
+  border-color: #1f2730;
+  background: linear-gradient(180deg, #151b22, #131920);
   box-shadow: none;
 }
 
-/* --- Arrows (robust unicode) --- */
+/* --- Arrows --- */
 .btn[data-dir="left"]::before,
 .btn[data-dir="up"]::before,
-.btn[data-dir="right"]::after{
-  font-weight:700;
-  line-height:1;
-  opacity:.95;
+.btn[data-dir="right"]::after {
+  font-weight: 700;
+  line-height: 1;
+  opacity: .95;
 }
-.btn[data-dir="left"]::before{  content:"←"; margin-right:.35em; }
-.btn[data-dir="up"]::before{    content:"↑"; margin-right:.35em; }
-.btn[data-dir="right"]::after{  content:"→"; margin-left:.35em; }
+.btn[data-dir="left"]::before { content: "←"; margin-right: .35em; }
+.btn[data-dir="up"]::before   { content: "↑"; margin-right: .35em; }
+.btn[data-dir="right"]::after { content: "→"; margin-left: .35em; }
 
-/* Small label (JP) next to EN */
-.badge{
-  font-size:.72em;
-  padding:.2em .5em;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:#0e151c;
-  color:var(--muted);
-  font-weight:600;
+/* --- Small label --- */
+.badge {
+  font-size: .72em;
+  padding: .2em .5em;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0e151c;
+  color: var(--muted);
+  font-weight: 600;
 }
 
-/* --- Cards grid for Unity page --- */
-.grid{
-  display:grid;gap:16px;
+/* --- Cards grid (Unity page) --- */
+.grid {
+  display: grid;
+  gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  margin-top:18px;
+  margin-top: 18px;
 }
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:16px 18px;
-  box-shadow:var(--shadow);
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
 }
-.card h3{margin:.2em 0 .2em;color:var(--text);font-size:18px}
-.card p{margin:.2em 0 0;color:var(--muted);font-size:14px}
+.card h3 {
+  margin: .2em 0 .2em;
+  color: var(--text);
+  font-size: 18px;
+}
+.card p {
+  margin: .2em 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
 
-/* --- Canvas area (network art) --- */
-.canvas-wrap{
-  height:360px;
-  border:1px solid var(--line);
-  border-radius:18px;
+/* --- Canvas (network art) --- */
+.canvas-wrap {
+  height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
   background: radial-gradient(900px 380px at 25% -20%, rgba(115,98,255,.08), rgba(115,98,255,.02) 40%, transparent 70%), #0d1117;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  margin-top:16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
 }
-
-/* 🚩 全canvasに共通デザインを適用 */
-canvas{
-  display:block;
-  margin:0 auto 24px auto;
-  border-radius:12px;
-  background:var(--panel);
-  max-width:720px;
-  width:100%;
-  height:auto;
+canvas {
+  display: block;
+  margin: 0 auto 24px auto;
+  border-radius: 12px;
+  background: var(--panel);
+  max-width: 720px;
+  width: 100%;
+  height: auto;
 }
 
 /* --- Helpers --- */
-.mt-2{margin-top:12px}
-.mt-3{margin-top:18px}
-.mt-4{margin-top:24px}
+.mt-2 { margin-top: 12px }
+.mt-3 { margin-top: 18px }
+.mt-4 { margin-top: 24px }
 
 /* --- Responsive tweaks --- */
-@media (max-width:600px){
-  .container{margin:32px auto}
-  .hero{padding:24px 18px}
-  .nav-row{gap:10px}
+@media (max-width:600px) {
+  .container { margin: 32px auto }
+  .hero { padding: 24px 18px }
+  .nav-row { gap: 10px }
 }
