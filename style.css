@@ -50,10 +50,14 @@ body{
 
 /* --- Title block --- */
 .kicker{
-  width:48px;height:48px;display:inline-grid;place-items:center;
-  margin-right:12px;border-radius:12px;
-  background: radial-gradient(40px 40px at 30% 30%, rgba(52,211,153,.35), rgba(52,211,153,.05));
-  border:1px solid rgba(52,211,153,.35);
+  width:48px;
+  height:58px;
+  display:inline-block;
+  margin-right:12px;
+  border-radius:12px;
+  background: url("/assets/logo-unity.png") center/cover no-repeat;
+  background-color: transparent;
+  flex-shrink: 0;
 }
 .title-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 h1{
