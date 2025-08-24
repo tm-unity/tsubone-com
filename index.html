@@ -24,10 +24,15 @@
       <p class="lead">緩やかにつながって、友情を醸しましょう。</p>
       <p class="sub">Let us connect gently and foster friendship.</p>
 
-      <nav class="nav-row" aria-label="Primary navigation">
-        <a class="btn" href="/apply/" data-dir="left">Apply</a>
-        <a class="btn" href="#" aria-current="page" data-dir="up">Portal</a>
-        <a class="btn" href="/unity/" data-dir="right">Unity</a>
+      <!-- ✅ New: Two-tier navigation layout -->
+      <nav class="nav-grid" aria-label="Primary navigation">
+        <div class="row top">
+          <a class="btn" href="#" aria-current="page" data-dir="up">Portal</a>
+        </div>
+        <div class="row bottom">
+          <a class="btn" href="/apply/" data-dir="left">Apply</a>
+          <a class="btn" href="/unity/" data-dir="right">Unity</a>
+        </div>
       </nav>
 
       <div class="hr" aria-hidden="true"></div>
