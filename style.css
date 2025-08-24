@@ -116,13 +116,25 @@ h1 {
   text-decoration: underline;
 }
 
-/* --- Buttons --- */
-.nav-row {
+/* --- Button grid: 2段組（new layout） --- */
+.nav-grid {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 14px;
   margin-top: 18px;
 }
+.nav-grid .row {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-grid .top {
+  justify-content: center;
+}
+.nav-grid .bottom {
+  justify-content: space-between;
+}
+
+/* --- Buttons --- */
 .btn {
   --pad-y: .66em;
   --pad-x: 1.2em;
@@ -243,5 +255,4 @@ canvas {
 @media (max-width:600px) {
   .container { margin: 32px auto }
   .hero { padding: 24px 18px }
-  .nav-row { gap: 10px }
 }
